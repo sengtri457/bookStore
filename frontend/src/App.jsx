@@ -18,8 +18,6 @@ const Cart = lazy(() => import("./pages/Cart"));
 const Profile = lazy(() => import("./pages/Profile"));
 const AllOrders = lazy(() => import("./pages/AllOrders"));
 const AddBook = lazy(() => import("./pages/AddBook"));
-
-// Lazy nested/profile + detail (keep original component paths)
 const BookDetail = lazy(() => import("./components/BookDetail/BookDetail"));
 const Favourites = lazy(() => import("./components/Profile/Favourites"));
 const UserOrderHistory = lazy(() =>

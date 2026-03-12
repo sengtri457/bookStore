@@ -52,6 +52,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import environment from "../../enviroment/enviroment";
 
 const BookCard = ({ data, favorite, onRemove }) => {
   const [isRemoving, setIsRemoving] = useState(false);
@@ -67,7 +68,7 @@ const BookCard = ({ data, favorite, onRemove }) => {
 
     try {
       await axios.put(
-        "http://localhost:1000/api/v1/remove-book-from-favorite",
+       `${environment.apiUrl}/remove-book-from-favorite`,
         {},
         {
           headers: {

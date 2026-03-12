@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import BookCard from '../BookCard/BookCard';
-
+import environment from '../../enviroment/enviroment';
 const Favourites = () => {
   const [favoriteBooks, setFavoriteBooks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +15,7 @@ const Favourites = () => {
     const fetchFavorites = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:1000/api/v1/get-favorite-books",
+          `${environment.apiUrl}/get-favorite-books`,
           { headers }
         );
         setFavoriteBooks(response.data.data || []);

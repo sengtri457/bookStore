@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import environment from "../../enviroment/enviroment";
 const Settings = () => {
   const [userInfo, setUserInfo] = useState({
     username: "",
@@ -15,7 +15,7 @@ const Settings = () => {
       try {
         const id = localStorage.getItem("id");
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:1000/api/v1/get-user-information", {
+        const res = await axios.get(`${environment.apiUrl}/get-user-information`, {
           headers: { id, authorization: `Bearer ${token}` },
         });
         setUserInfo({
@@ -43,7 +43,7 @@ const Settings = () => {
       const id = localStorage.getItem("id");
       const token = localStorage.getItem("token");
       const res = await axios.put(
-        "http://localhost:1000/api/v1/update-address",
+      `${environment.apiUrl}/update-address`,
         { address: userInfo.address },
         {
           headers: { id, authorization: `Bearer ${token}` },

@@ -87,7 +87,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
 import { authAction } from "../../store/auth";
 import { useDispatch, useSelector } from "react-redux";
-
 const Sidebar = ({ data }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -122,7 +121,7 @@ const Sidebar = ({ data }) => {
           src={
             data.avatar.startsWith("http")
               ? data.avatar
-              : `http://localhost:1000/${data.avatar}`
+              : `https://bookstore-2-snch.onrender.com/${data.avatar}`
           }
           alt="User Avatar"
           className="h-[12vh] w-[12vh] rounded-full object-cover border-2 border-zinc-700 shadow-md"

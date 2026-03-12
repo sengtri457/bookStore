@@ -46,7 +46,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
 import BookCard from '../components/BookCard/BookCard';
-
+import environment from '../enviroment/enviroment';
 const AllBooks = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -64,7 +64,7 @@ const AllBooks = () => {
       try {
         setLoading(true);
         setError(null);
-        const response = await axios.get('http://localhost:1000/api/v1/get-all-books');
+        const response = await axios.get(`${environment.apiUrl}/get-all-books`);
         setBooks(response.data.data || []);
       } catch (err) {
         console.error('Error fetching books:', err);

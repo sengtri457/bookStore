@@ -6,6 +6,7 @@ import { IoArrowBack } from "react-icons/io5";
 import { FaHeart, FaEdit, FaTrash } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import { useSelector } from 'react-redux';
+import environment from '../../enviroment/enviroment';
 
 const BookDetail = () => {
   const { id } = useParams();
@@ -26,11 +27,12 @@ const BookDetail = () => {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const response = await axios.get(`http://localhost:1000/api/v1/get-book-by-id/${id}`);
+        const response = await axios.get(`${environment.apiUrl}/get-book-by-id/${id}`);
         setData(response.data.data);
         setEditData(response.data.data); // Initialize edit form with current data
       } catch (err) {
         setError('Failed to fetch book data');
+        console.log(err);
       } finally {
         setLoading(false);
       }
@@ -48,28 +50,29 @@ const BookDetail = () => {
   const handleFavorite = async () => {
     try {
       const response = await axios.put(
-        "http://localhost:1000/api/v1/add-book-to-favorite",
+        `${environment.apiUrl}/add-book-to-favorite`,
         {},
         { headers }
       );
       alert(response.data.message || "Book added to your favorites");
       setIsFavorited(true);
     } catch (error) {
-      alert("Failed to add book to favorites");
+      alert("Failed to add book to favorites"+ error);
+        console.log(error);
     }
   };
 
   const handleCart = async () => {
     try {
       const response = await axios.put(
-        "http://localhost:1000/api/v1/add-to-cart",
+        `${environment.apiUrl}/add-to-cart`,
         {},
         { headers }
       );
       alert(response.data.message || "Book added to cart");
       setIsInCart(true);
     } catch (error) {
-      alert("Failed to add book to cart");
+      alert("Failed to add book to cart" + error);
     }
   };
 
@@ -82,7 +85,7 @@ const BookDetail = () => {
     e.preventDefault();
     try {
       const res = await axios.put(
-        "http://localhost:1000/api/v1/update-book",
+        `${environment.apiUrl}/update-book`,
         editData,
         { headers }
       );
@@ -90,7 +93,7 @@ const BookDetail = () => {
       setData(editData);
       setIsEditing(false);
     } catch (error) {
-      alert("Failed to update book");
+      alert("Failed to update book"+ error);
     }
   };
 
@@ -99,13 +102,13 @@ const BookDetail = () => {
 
     try {
       const res = await axios.delete(
-        "http://localhost:1000/api/v1/delete-book",
+        `${environment.apiUrl}/delete-book`,
         { headers }
       );
       alert(res.data.message || "Book deleted successfully");
       navigate("/"); // Redirect after delete (adjust as needed)
     } catch (error) {
-      alert("Failed to delete book");
+      alert("Failed to delete book"+ error);
     }
   };
 

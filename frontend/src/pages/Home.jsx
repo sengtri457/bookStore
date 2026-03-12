@@ -15,7 +15,6 @@
 import React from 'react';
 import Hero from '../components/Home/Hero';
 import RecentlyAdded from '../components/Home/RecentlyAdded';
-
 const Home = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-zinc-900 text-white relative overflow-hidden">

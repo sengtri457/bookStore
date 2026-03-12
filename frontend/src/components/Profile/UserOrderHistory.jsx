@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import environment from "../../enviroment/enviroment";
 
 const OrderHistory = () => {
   const [orders, setOrders] = useState([]);
@@ -20,7 +21,7 @@ const OrderHistory = () => {
 
       try {
         const res = await axios.get(
-          "http://localhost:1000/api/v1/get-order-history",
+          `${environment.apiUrl}/get-order-history`,
           { headers }
         );
         setOrders(res.data.data || []);
@@ -72,7 +73,7 @@ const OrderHistory = () => {
                       src={
                         order.book.url.startsWith("http")
                           ? order.book.url
-                          : `http://localhost:1000/${order.book.url}`
+                          : `https://bookstore-2-snch.onrender.com/${order.book.url}`
                       }
                       alt={order.book.title}
                       className="h-20 w-16 object-cover rounded-lg border border-zinc-600"

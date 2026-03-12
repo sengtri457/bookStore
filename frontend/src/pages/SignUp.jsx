@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import environment from '../enviroment/enviroment';
 
 const SignUp = () => {
   const navigate = useNavigate(); // <-- Add this
@@ -27,7 +28,7 @@ const SignUp = () => {
 
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:1000/api/v1/signup', values);
+      const response = await axios.post(`${environment.apiUrl}/signup`, values);
 
       if (response.status === 201 || response.status === 200) {
         alert('Signup successful!');

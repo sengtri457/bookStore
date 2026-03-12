@@ -34,7 +34,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import BookCard from '../BookCard/BookCard';
-
+import environment from '../../enviroment/enviroment';
 const RecentlyAdded = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -45,7 +45,7 @@ const RecentlyAdded = () => {
       try {
         setLoading(true);
         setError(null);
-        const response = await axios.get('http://localhost:1000/api/v1/get-recent-books');
+        const response = await axios.get(`${environment.apiUrl}/get-recent-books`);
         setData(response.data.data || []);
       } catch (error) {
         console.error("Error fetching books:", error);

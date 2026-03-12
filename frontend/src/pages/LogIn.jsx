@@ -3,6 +3,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { authAction } from "../store/auth";
+import environment from '../enviroment/enviroment';
 
 const LogIn = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const LogIn = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:1000/api/v1/signin", values);
+      const res = await axios.post(`${environment.apiUrl}/signin`, values);
 
       if (res.status === 200) {
         const data = res.data;

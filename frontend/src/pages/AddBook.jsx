@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import environment from "../enviroment/enviroment";
 const AddBook = () => {
   const [formData, setFormData] = useState({
     url: "",
@@ -26,7 +26,7 @@ const AddBook = () => {
       };
 
       const res = await axios.post(
-        "http://localhost:1000/api/v1/add-book",
+        `${environment.apiUrl}/add-book`,
         formData,
         { headers }
       );

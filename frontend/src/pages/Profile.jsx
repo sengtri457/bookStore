@@ -59,7 +59,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { authAction } from "../store/auth";
-
+import environment from "../enviroment/enviroment";
 const Profile = () => {
   const [profile, setProfile] = useState(null);
   // Fix typo: use "isloggedIn" to match your Redux slice
@@ -86,7 +86,7 @@ const Profile = () => {
 
   const fetchProfile = async (token, id) => {
     try {
-      const res = await axios.get("http://localhost:1000/api/v1/get-user-information", {
+      const res = await axios.get(`${environment.apiUrl}/get-user-information`, {
         headers: {
           Authorization: `Bearer ${token}`,
           id,

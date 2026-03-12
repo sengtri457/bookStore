@@ -159,7 +159,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import environment from '../enviroment/enviroment';
 const Cart = () => {
   const [cart, setCart] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -191,7 +191,7 @@ const Cart = () => {
     const fetchCart = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:1000/api/v1/get-user-cart", { headers });
+        const res = await axios.get(`${environment.apiUrl}/get-user-card`, { headers });
         const cartData = res.data.data || [];
         setCart(cartData);
         calculateTotals(cartData);

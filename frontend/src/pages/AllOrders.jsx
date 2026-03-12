@@ -144,7 +144,7 @@
 import axios from 'axios';
 import React, { useEffect, useState, useCallback } from 'react';
 import { FaUserLarge } from 'react-icons/fa6';
-
+import environment from '../enviroment/enviroment';
 const AllOrders = () => {
   const [allOrders, setAllOrders] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -182,7 +182,7 @@ const AllOrders = () => {
           throw new Error("Unable to get authentication headers");
         }
 
-        const response = await axios.get("http://localhost:1000/api/v1/get-all-orders", { 
+        const response = await axios.get(`${environment.apiUrl}/get-all-orders`, { 
           headers 
         });
         
@@ -210,7 +210,7 @@ const AllOrders = () => {
       }
 
       const response = await axios.put(
-        `http://localhost:1000/api/v1/update-status/${orderId}`, 
+        `${environment.apiUrl}/update-status/${orderId}`, 
         { status: newStatus },
         { headers }
       );

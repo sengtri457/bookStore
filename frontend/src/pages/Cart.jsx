@@ -191,7 +191,7 @@ const Cart = () => {
     const fetchCart = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`${environment.apiUrl}/get-user-card`, { headers });
+        const res = await axios.get(`${environment.apiUrl}/get-user-cart`, { headers });
         const cartData = res.data.data || [];
         setCart(cartData);
         calculateTotals(cartData);
@@ -224,7 +224,7 @@ const Cart = () => {
     setRemovingItems(prev => new Set(prev).add(bookId));
 
     try {
-      await axios.put(`http://localhost:1000/api/v1/remove-from-cart/${bookId}`, {}, { headers });
+      await axios.put(`${environment.apiUrl}/remove-from-cart/${bookId}`, {}, { headers });
       const updatedCart = cart.filter(item => item._id !== bookId);
       setCart(updatedCart);
       calculateTotals(updatedCart);
@@ -248,7 +248,7 @@ const Cart = () => {
     setPlacingOrder(true);
     try {
       const res = await axios.post(
-        "http://localhost:1000/api/v1/place-order",
+        `${environment.apiUrl}/place-order`,
         { order: cart },
         { headers }
       );

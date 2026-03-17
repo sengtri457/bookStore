@@ -3,7 +3,6 @@ const  User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const {authenticateToken} = require("./userAuth");
 const Book = require("../models/book");
-
 //add book --admin
 router.post("/add-book" , authenticateToken , async(req ,res) =>{
     try{
@@ -73,7 +72,7 @@ router.delete("/delete-book" , authenticateToken , async (req ,res) => {
 
 //get all books
 
-router.get("/get-all-books" , async (req,res) => {
+router.get("/get-all-books" ,authenticateToken, async (req,res) => {
     try{
         const books = await Book.find().sort({createdAt : -1}) ;
         return res.json({
